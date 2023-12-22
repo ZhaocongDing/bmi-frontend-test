@@ -1,6 +1,72 @@
-/* base styles */
+/* --- base styles --- */
 * {
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.app-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  padding: 15px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.artistListSection,
+.artistDetailsSection {
+  background-color: #dadada;
+  border: 0.5px solid black;
+}
+
+.artistSection,
+.artistListSection,
+.artistDetailsSection,
+.artistTitle,
+.songLyrics,
+.songDetails {
+  border-radius: 6px;
+}
+
+/* --- artist list section --- */
+.artistListSection {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 50px 15px 20px;
+  justify-content: space-between;
+}
+
+.artistList {
+  width: 90%;
+  overflow: scroll;
+}
+
+.artistSection {
+  line-height: 1.6;
+  background-color: white;
+  padding: 1.3em 0 1.3em 3em;
+  margin-bottom: 1em;
+}
+
+.buttons {
+  display: flex;
+  gap: 40px;
+  width: 60%;
+  margin-top: 20px;
+}
+
+.button {
+  border: none;
+  border-radius: 4px;
+  padding: 1.2em;
+  flex: 1;
+  background-color: white;
+}
+
+/* --- artist details section --- */
+.artistDetailsSection {
+  flex: 3.5 1 auto;
+}
