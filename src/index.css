@@ -1,4 +1,4 @@
-/* --- base styles --- */
+/* ------ base styles ------ */
 * {
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,15 +29,16 @@
   border-radius: 6px;
 }
 
-/* --- artist list section --- */
+/* ------ artist list section ------ */
 .artistListSection {
-  flex: 1 0 auto;
+  flex: 1 1 base;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 50px 15px 20px;
   justify-content: space-between;
+  width: 420px;
 }
 
 .artistList {
@@ -72,12 +73,13 @@
   background-color: white;
 }
 
-/* --- artist details section --- */
+/* ------ artist details section ------ */
 .artistDetailsSection {
-  flex: 3.5 0 auto;
+  flex: 3 1 auto;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
+  min-width: 300px;
 }
 
 .artistTitle,
