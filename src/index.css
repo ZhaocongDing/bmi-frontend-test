@@ -2,6 +2,7 @@
 * {
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
 }
 
 .app-content {
@@ -30,11 +31,11 @@
 
 /* --- artist list section --- */
 .artistListSection {
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   padding: 50px 15px 20px;
   justify-content: space-between;
 }
@@ -47,14 +48,14 @@
 .artistSection {
   line-height: 1.6;
   background-color: white;
-  padding: 1.3em 0 1.3em 3em;
-  margin-bottom: 1em;
+  padding: 2em 0 2em 3em;
+  margin-bottom: 1.5em;
 }
 
 .buttons {
   display: flex;
   gap: 40px;
-  width: 60%;
+  width: 68%;
   margin-top: 20px;
 }
 
@@ -68,5 +69,46 @@
 
 /* --- artist details section --- */
 .artistDetailsSection {
-  flex: 3.5 1 auto;
+  flex: 3.5 0 auto;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
 }
+
+.artistTitle,
+.songLyrics,
+.songDetails {
+  background-color: white;
+  margin: 5px 15px 5px 10px;
+  padding: 0.5em;
+}
+
+.artistTitle {
+  display: flex;
+  align-items: center;
+  flex: 0 0 base;
+}
+
+.new-tab {
+  margin-left: auto;
+}
+
+.three-lines {
+  margin-right: 5px;
+}
+
+.songLyrics,
+.songDetails {
+  white-space: pre-wrap;
+  overflow: scroll;
+}
+
+.songLyrics{
+  height: 65%;
+  flex: 0 0 auto;
+}
+
+.songDetails {
+  flex: 1 1 auto;
+}
+
