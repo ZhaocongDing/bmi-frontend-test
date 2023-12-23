@@ -1,10 +1,7 @@
 import threeLinesMenu from './images/three-bars.svg';
 import newTab from './images/in-new-tab.svg';
 
-const ArtistDetails = () => {
-  const songLyrics = `[Verse 1]`;
-
-  const songDetails = `Composer: Composer`;
+const ArtistDetails = ({ artists, selected }) => {
 
   return (
     <div className="artistDetailsSection">
@@ -14,7 +11,9 @@ const ArtistDetails = () => {
           alt="menu-of-three-lines-icon"
           className="three-lines"
         />
-        <p className="artistDetailsTitle">Bruno Mars: That's What I Like</p>
+        <p className="artistDetailsTitle">
+          {selected !== '' ? artists[selected].artistDetailsTitle : ''}
+        </p>
         <img
           src={newTab}
           alt="new-tab-icon"
@@ -23,11 +22,11 @@ const ArtistDetails = () => {
       </header>
 
       <div className="songLyrics">
-        <p>{songLyrics}</p>
+        <p>{selected !== '' ? artists[selected].songLyrics : ''}</p>
       </div>
       
       <div className="songDetails">
-        <p>{songDetails}</p>
+        <p>{selected !== '' ? artists[selected].songDetails : ''}</p>
       </div>
     </div>
   );
