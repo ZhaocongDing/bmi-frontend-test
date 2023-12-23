@@ -2,6 +2,9 @@ import threeLinesMenu from './images/three-bars.svg';
 import newTab from './images/in-new-tab.svg';
 
 const ArtistDetails = ({ artists, selected }) => {
+  const artistDetailsTitle = artists.length ? artists[selected].artistDetailsTitle : '';
+  const songLyrics = artists.length ? artists[selected].songLyrics : '';
+  const songDetails = artists.length ? artists[selected].songDetails : '';
 
   return (
     <div className="artistDetailsSection">
@@ -12,7 +15,7 @@ const ArtistDetails = ({ artists, selected }) => {
           className="three-lines"
         />
         <p className="artistDetailsTitle">
-          {selected !== '' ? artists[selected].artistDetailsTitle : ''}
+          {selected !== '' ? artistDetailsTitle : ''}
         </p>
         <img
           src={newTab}
@@ -22,11 +25,11 @@ const ArtistDetails = ({ artists, selected }) => {
       </header>
 
       <div className="songLyrics">
-        <p>{selected !== '' ? artists[selected].songLyrics : ''}</p>
+        <p>{selected !== '' ? songLyrics : ''}</p>
       </div>
       
       <div className="songDetails">
-        <p>{selected !== '' ? artists[selected].songDetails : ''}</p>
+        <p>{selected !== '' ? songDetails : ''}</p>
       </div>
     </div>
   );

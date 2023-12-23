@@ -1,16 +1,16 @@
 // import { useState } from "react";
 // import Artist from "./Artist";
 
-const ArtistList = ({ artists, selected, onClick }) => {
-  const getSelectedArtist = (id) => (selected === id ? "selectedArtist" : "");
+const ArtistList = ({ artists, selected, pickArtist, addArtist, removeArtist }) => {
+  const getSelectedArtist = (index) => (selected === index ? "selectedArtist" : "");
 
   return (
     <div className="artistListSection">
       <div className="artistList">
         {artists.map((artist, key) =>
           <div 
-            className={`artistSection ${getSelectedArtist(artist.id)}`}
-            onClick={() => onClick(artist.id)}
+            className={`artistSection ${getSelectedArtist(key)}`}
+            onClick={()=>pickArtist(key)}
             key={key}
           >
             <p>Name: {artist.name}</p>
@@ -21,8 +21,8 @@ const ArtistList = ({ artists, selected, onClick }) => {
       </div>
 
       <div className="buttons">
-        <button className="button">add artist</button>
-        <button className="button">remove artist</button>
+        <button className="button" onClick={()=>addArtist()}>add artist</button>
+        <button className="button" onClick={()=>removeArtist(selected)}>remove artist</button>
       </div>
 
     </div>
