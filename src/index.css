@@ -52,6 +52,11 @@
   margin-bottom: 1.5em;
 }
 
+.selectedArtist {
+  background-color: #e5f2e5;
+  border: 1px solid #7fbf7f;
+}
+
 .buttons {
   display: flex;
   gap: 40px;
