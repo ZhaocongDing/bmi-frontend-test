@@ -1,5 +1,6 @@
 import threeLinesMenu from '../images/three-bars.svg';
 import newTab from '../images/in-new-tab.svg';
+import { useLocation } from "react-router-dom";
 
 const ArtistDetails = ({ artists, selected, setTrigger, song }) => {
   const artistDetailsTitle = artists.length && artists[selected] ? artists[selected].songs[song].artistDetailsTitle : '';
@@ -9,6 +10,9 @@ const ArtistDetails = ({ artists, selected, setTrigger, song }) => {
   const openNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
   }
+
+  const location = useLocation();
+  const { pathname } = location;
 
   return (
     <div className="artistDetailsSection">
@@ -24,12 +28,12 @@ const ArtistDetails = ({ artists, selected, setTrigger, song }) => {
           {selected !== '' && artists[selected] ? `${artists[selected].name}: ${artistDetailsTitle}` : ''}
         </p>
 
-        <img
+        {pathname !== '/artist' && <img
           src={newTab}
           alt="new-tab-icon"
           className="new-tab"
           onClick={()=>openNewTab('http://localhost:3000/artist')}
-        />
+        />}
       </header>
 
       <div className="songLyrics">

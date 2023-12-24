@@ -2,15 +2,7 @@ import { useState } from "react";
 import ArtistDetails from "../components/ArtistDetails";
 import SelectSongPopup from "../components/SelectSongPopup";
 
-const Artist = () => {
-  const [artists, setArtists] = useState([
-    { name: 'Bruno Mars', nationality: 'American', age: '20', songs: [{artistDetailsTitle: 'That\'s What I Like', songLyrics: '[Verse 1]', songDetails: 'Composer: Composer'}, {artistDetailsTitle: 'song2', songLyrics: 'song2', songDetails: 'song2'}] },
-    { name: 'Adele', nationality: 'English', age: '21', songs: [{artistDetailsTitle: 'a2 s1', songLyrics: 'a2 s1', songDetails: 'a2 s1'}, {artistDetailsTitle: 'song2', songLyrics: 'song2', songDetails: 'song2'}] },
-    { name: 'Michael Jackson', nationality: 'American', age: '19', songs: [{artistDetailsTitle: 'a3 s1', songLyrics: '[a3 s1 1]', songDetails: 'Composer: Composer'}, {artistDetailsTitle: 'a3 s2', songLyrics: 'song2', songDetails: 'song2'}] }
-  ]);
-
-  const [selected, setSelected] = useState(artists.length !== 0 ? 0 : '');
-  const [song, setSong] = useState(0);
+const Artist = ({ artists, selected, song, setSong }) => {
   const [songPopup, setSongPopup] = useState(false);
 
   const pickSong = (songTitle) => {
