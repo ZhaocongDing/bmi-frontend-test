@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [artists, setArtists] = useState([]);
-  const [selected, setSelected] = useState(artists.length !== 0 ? 0 : '');
+  const [selected, setSelected] = useState('');
   const [song, setSong] = useState(0);
 
   useEffect(() => {

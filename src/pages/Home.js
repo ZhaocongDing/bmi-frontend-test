@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArtistList from "../components/ArtistList";
 import ArtistDetails from "../components/ArtistDetails";
 import AddArtistPopup from "../components/AddArtistPopup";
 import SelectSongPopup from "../components/SelectSongPopup";
-import ArtistInNewTab from "../components/ArtistInNewTab";
 
 const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => {
   const [addArtistPopup, setAddArtistPopup] = useState(false);
@@ -42,12 +41,11 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
   }
 
   const removeArtist = (selected) => {
+    const id = artists[selected].id;
     const filteredList = artists.filter((artist) => artists.indexOf(artist) !== selected);
     setArtists(filteredList);
     setSelected(artists.length !== 0 ? 0 : '');
 
-    let id = selected+1;
-    console.log('id: ', id)
     fetch('http://localhost:8000/artists/' + id, {
       method: 'DELETE'
     })
@@ -62,6 +60,12 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
     }
     setSong(tempSong);
   }
+
+  useEffect(() => {
+    localStorage.setItem('artists', JSON.stringify(artists));
+    localStorage.setItem('selected', selected);
+    localStorage.setItem('song', song);
+  }, [artists, selected, song]);
 
   return (
     <div className="App">
@@ -94,11 +98,6 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
         setTrigger={setSongPopup}
         pickSong={pickSong}
       />
-
-      {null && <ArtistInNewTab
-        selected={selected}
-        artists={artists}
-      />}
     </div>
   );
 }

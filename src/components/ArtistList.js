@@ -1,6 +1,3 @@
-// import { useState } from "react";
-// import Artist from "./Artist";
-
 const ArtistList = ({ artists, selected, pickArtist, addArtist, removeArtist }) => {
   const getSelectedArtist = (index) => (selected === index ? "selectedArtist" : "");
 

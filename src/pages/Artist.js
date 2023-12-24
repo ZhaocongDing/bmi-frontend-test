@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArtistDetails from "../components/ArtistDetails";
 import SelectSongPopup from "../components/SelectSongPopup";
 
-const Artist = ({ artists, selected, song, setSong }) => {
+const Artist = () => {
+  const [artists, setArtists] = useState([]);
+  const [selected, setSelected] = useState('');
+  const [song, setSong] = useState(0);
+
+  useEffect(() => {
+    setArtists(JSON.parse(localStorage.getItem("artists")));
+    setSelected(localStorage.getItem("selected"));
+    setSong(localStorage.getItem("song"));
+  }, []);
+
   const [songPopup, setSongPopup] = useState(false);
 
   const pickSong = (songTitle) => {
