@@ -33,12 +33,24 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
     setArtists([...artists, data]);
     setSelected(artists.length);
     setSong(0);
+
+    fetch('http://localhost:8000/artists', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
   }
 
   const removeArtist = (selected) => {
     const filteredList = artists.filter((artist) => artists.indexOf(artist) !== selected);
     setArtists(filteredList);
     setSelected(artists.length !== 0 ? 0 : '');
+
+    let id = selected+1;
+    console.log('id: ', id)
+    fetch('http://localhost:8000/artists/' + id, {
+      method: 'DELETE'
+    })
   }
 
   const pickSong = (songTitle) => {
@@ -49,7 +61,6 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
       }
     }
     setSong(tempSong);
-    console.log('song: ', song);
   }
 
   return (

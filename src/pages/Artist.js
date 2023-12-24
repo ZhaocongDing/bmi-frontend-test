@@ -13,7 +13,6 @@ const Artist = ({ artists, selected, song, setSong }) => {
       }
     }
     setSong(tempSong);
-    console.log('song: ', song);
   }
 
   return (
