@@ -1,9 +1,10 @@
-const ArtistList = ({ artists, selected, pickArtist, addArtist, removeArtist }) => {
+const ArtistList = ({ artists, selected, pickArtist, addArtist, removeArtist, error }) => {
   const getSelectedArtist = (index) => (selected === index ? "selectedArtist" : "");
 
   return (
     <div className="artistListSection">
       <div className="artistList">
+        { error && <div style={{ fontWeight: 700, color: "red" }}>{ error }<br /><br /></div>}
         {artists.map((artist, key) =>
           <div 
             className={`artistSection ${getSelectedArtist(key)}`}

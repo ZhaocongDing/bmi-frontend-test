@@ -8,6 +8,7 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [selected, setSelected] = useState('');
   const [song, setSong] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:8000/artists')
@@ -21,7 +22,7 @@ function App() {
         setArtists(data);
       })
       .catch(err => {
-        console.log(err.message);
+        setError(err.message);
       })
   }, []); 
 
@@ -37,6 +38,8 @@ function App() {
               setSelected={setSelected}
               song={song}
               setSong={setSong}
+              error={error}
+              setError={setError}
             />} />
           <Route path="/artist" element={
             <Artist

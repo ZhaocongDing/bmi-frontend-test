@@ -4,7 +4,7 @@ import ArtistDetails from "../components/ArtistDetails";
 import AddArtistPopup from "../components/AddArtistPopup";
 import SelectSongPopup from "../components/SelectSongPopup";
 
-const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => {
+const Home = ({ artists, setArtists, selected, setSelected, song, setSong, error, setError }) => {
   const [addArtistPopup, setAddArtistPopup] = useState(false);
   const [songPopup, setSongPopup] = useState(false);
 
@@ -21,6 +21,7 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
 
   // add a new artist to list 
   const addToList = (data) => {
+    setAddArtistPopup(false);
     // add blank artist details to new artist
     data.songs = [{
       artistDetailsTitle: '',
@@ -28,33 +29,51 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
       songDetails: ''
     }];
 
-    setAddArtistPopup(false);
-    setArtists([...artists, data]);
-    setSelected(artists.length);
-    setSong(0);
-
     fetch('http://localhost:8000/artists', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     })
+      .then(res => {
+        if (!res.ok) {
+          throw Error('could not post the data to database...')
+        } else {
+          setArtists([...artists, data]);
+          setSelected(artists.length);
+          setSong(0);
+        }
+      })
+      .catch(err => {
+        setError(err.message);
+      })
   }
 
   const removeArtist = (selected) => {
-    const id = artists[selected].id;
-    const filteredList = artists.filter((artist) => artists.indexOf(artist) !== selected);
-    setArtists(filteredList);
-    setSelected(artists.length !== 0 ? 0 : '');
+    if (artists.length !== 0) {
+      const id = artists[selected].id;
+      const filteredList = artists.filter((artist) => artists.indexOf(artist) !== selected);
 
-    fetch('http://localhost:8000/artists/' + id, {
-      method: 'DELETE'
-    })
+      fetch('http://localhost:8000/artists/' + id, {
+        method: 'DELETE'
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw Error('could not finish delete...')
+          } else {
+            setArtists(filteredList);
+            setSelected(artists.length !== 0 ? 0 : '');
+          }
+        })
+        .catch(err => {
+          setError(err.message);
+        })
+    }
   }
 
   const pickSong = (songTitle) => {
     let tempSong;
-    for(let i = 0; i < artists[selected].songs.length; i++) {
-      if(artists[selected].songs[i].artistDetailsTitle === songTitle) {
+    for (let i = 0; i < artists[selected].songs.length; i++) {
+      if (artists[selected].songs[i].artistDetailsTitle === songTitle) {
         tempSong = i
       }
     }
@@ -70,14 +89,15 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
   return (
     <div className="App">
       <div className="app-content">
-        <ArtistList 
+        <ArtistList
           artists={artists}
           selected={selected}
           pickArtist={pickArtist}
           addArtist={addArtist}
           removeArtist={removeArtist}
+          error={error}
         />
-        <ArtistDetails 
+        <ArtistDetails
           artists={artists}
           selected={selected}
           setTrigger={setSongPopup}
@@ -85,7 +105,7 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
         />
       </div>
 
-      <AddArtistPopup 
+      <AddArtistPopup
         trigger={addArtistPopup}
         setTrigger={setAddArtistPopup}
         addToList={addToList}
@@ -101,5 +121,5 @@ const Home = ({ artists, setArtists, selected, setSelected, song, setSong }) => 
     </div>
   );
 }
- 
+
 export default Home;

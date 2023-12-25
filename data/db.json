@@ -114,19 +114,6 @@
         }
       ],
       "id": 4
-    },
-    {
-      "name": "2",
-      "nationality": "2",
-      "age": "2",
-      "songs": [
-        {
-          "artistDetailsTitle": "",
-          "songLyrics": "",
-          "songDetails": ""
-        }
-      ],
-      "id": 5
     }
   ]
 }
